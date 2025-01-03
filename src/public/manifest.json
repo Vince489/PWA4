@@ -1,0 +1,43 @@
+{
+  "id": "https://virtron.cc/",
+  "short_name": "Virtron",
+  "name": "Virtron Metaverse",
+  "description": "Virtron Metaverse is a virtual world where you can create, share, and experience virtual reality content.",
+  "icons": [
+    {
+      "src": "/icons/vbc-180.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/vbc-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/vbc-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "theme_color": "#317EFB",
+  "background_color": "#ffffff",
+  "screenshots": [
+    {
+      "src": "/icons/vbc-1280.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide"
+    },
+    {
+      "src": "/icons/vbc-720.png",
+      "sizes": "720x1280",
+      "type": "image/png",
+      "form_factor": "narrow"
+    }
+  ]
+}

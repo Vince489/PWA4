@@ -1,0 +1,124 @@
+  <style>
+    /* Prevent pull-to-refresh and ensure smooth scrolling */
+    body, html {
+      margin: 0;
+      overscroll-behavior: none;
+      height: 100%;
+    }
+
+    /* Ensure video container fills the viewport */
+    .video-container {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    /* Each video slide */
+    .slide {
+      position: absolute;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    /* Video styles */
+    .slide video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  </style>
+
+  <div class="video-container" id="video-container">
+    <div class="slide" style="transform: translateY(0%);">
+      <video src="video1.mp4" autoplay muted loop></video>
+    </div>
+    <div class="slide" style="transform: translateY(100%);">
+      <video src="video2.mp4" muted loop></video>
+    </div>
+  </div>
+
+  <script>
+    const slides = document.querySelectorAll('.slide');
+    let currentIndex = 0;
+    let startY = 0;
+    let isDragging = false;
+    let isTransitioning = false;
+
+    // Function to update slide positions
+    function updateSlides() {
+      slides.forEach((slide, index) => {
+        const offset = (index - currentIndex) * 100;
+        slide.style.transform = `translateY(${offset}%)`;
+        slide.style.transition = 'transform 0.3s ease-in-out';
+      });
+
+      // Play the active video and pause others
+      slides.forEach((slide, index) => {
+        const video = slide.querySelector('video');
+        if (index === currentIndex) {
+          video.play();
+        } else {
+          video.pause();
+        }
+      });
+    }
+
+    // Function to handle dragging effect
+    function dragSlides(deltaY) {
+      if (isTransitioning) return; // Prevent dragging during transition
+      slides.forEach((slide, index) => {
+        const offset = (index - currentIndex) * 100 + (deltaY / window.innerHeight) * 100;
+        slide.style.transform = `translateY(${offset}%)`;
+        slide.style.transition = 'none';
+      });
+    }
+
+    const slider = document.getElementById('video-container');
+
+    slider.addEventListener('touchstart', (e) => {
+      startY = e.touches[0].clientY;
+      isDragging = true;
+    });
+
+    slider.addEventListener('touchmove', (e) => {
+      if (!isDragging || isTransitioning) return;
+
+      const currentY = e.touches[0].clientY;
+      const deltaY = currentY - startY;
+
+      // Prevent pull-to-refresh
+      if (currentIndex === 0 && deltaY > 0) return;
+
+      e.preventDefault();
+      dragSlides(deltaY);
+    });
+
+    slider.addEventListener('touchend', (e) => {
+      if (!isDragging || isTransitioning) return;
+
+      isDragging = false;
+      const endY = e.changedTouches[0].clientY;
+      const deltaY = endY - startY;
+
+      if (deltaY < -50 && currentIndex < slides.length - 1) {
+        currentIndex++;
+      } else if (deltaY > 50 && currentIndex > 0) {
+        currentIndex--;
+      }
+
+      isTransitioning = true;
+      updateSlides();
+      setTimeout(() => {
+        isTransitioning = false;
+      }, 300); // Match transition duration
+    });
+
+    updateSlides();
+  </script>
+

@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  /* WebKit-based browsers (Chrome, Edge, Safari) */
+  ::-webkit-scrollbar {
+    display: none; /* Hides the scrollbar */
+  }
+
+  /* Firefox */
+  * {
+    scrollbar-width: none; /* Removes scrollbar */
+  }
+
+  /* Internet Explorer/Legacy Edge */
+  html, body {
+    -ms-overflow-style: none; /* Disables scrollbar in IE/Edge */
+  }
+}
