@@ -1,4 +1,4 @@
-const CACHE_NAME = 'simple-login-cache-v7.4';
+const CACHE_NAME = 'simple-login-cache-v7.25';
 const ASSETS_TO_CACHE = [
     '/', // Root
     '/profile', // Profile page

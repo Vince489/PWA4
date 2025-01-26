@@ -5,22 +5,37 @@ const UserSchema = new mongoose.Schema({
   userName: {
     type: String,
     required: true,
-    unique: true, // Ensures userNames are unique
-    trim: true, // Removes whitespace from the start and end
-    minlength: 3, // Minimum length requirement
-    maxlength: 50, // Maximum length requirement
+    unique: true,
+    trim: true,
+    minlength: 3,
+    maxlength: 50,
   },
   password: {
     type: String,
     required: true,
-    minlength: 6, // Enforces a minimum password length
-    maxlength: 1024, // Enforces a maximum password length
+    minlength: 6,
+    maxlength: 1024,
+  },
+  followers: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
+    }
+  ],
+  following: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
+    }
+  ],
+  likes: {
+    type: Number,
+    default: 0, // Starts at 0
   },
 }, {
-  timestamps: true, // Automatically adds createdAt and updatedAt fields
+  timestamps: true,
 });
 
-// Compile the schema into a model
 const User = mongoose.model('User', UserSchema);
 
 module.exports = User;

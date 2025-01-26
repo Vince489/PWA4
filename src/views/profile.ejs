@@ -1,60 +1,75 @@
-<!-- Back Button -->
-<div class="flex items-center justify-between p-4">
-  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-6 w-6 cursor-pointer" onclick="window.history.back()">
-    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
-  </svg>
-  <div class="font-bold">Kristina Jones</div>
-  <div class="w-8"></div> <!-- Placeholder for symmetry -->
-</div>
-
-
-<!-- Profile Image and Username -->
-<div class="text-center">
-  <div class="w-24 h-24 mx-auto border-2 border-white rounded-full overflow-hidden">
-    <img src="/profile-pic.png" alt="Profile Picture" class="w-full h-full object-cover">
-  </div>
-  <div class="text-gray-400 mt-2">@kriistiina.jones</div>
-</div>
-
-<!-- Stats Section -->
-<div class="flex justify-center mt-4 gap-8">
-  <div class="text-center">
-    <div class="font-bold text-lg">437</div>
-    <div class="text-gray-400 text-sm">Following</div>
-  </div>
-  <div class="text-center">
-    <div class="font-bold text-lg">1,885</div>
-    <div class="text-gray-400 text-sm">Followers</div>
-  </div>
-  <div class="text-center">
-    <div class="font-bold text-lg">43.4K</div>
-    <div class="text-gray-400 text-sm">Likes</div>
-  </div>
-</div>
-
-<!-- Buttons Section -->
-<div class="flex justify-center gap-8 mt-4">
-  <!-- Edit Profile Button -->
-  <button class="flex items-center justify-center px-4 py-2 bg-gray-100 text-black font-bold rounded-full border border-gray-300 hover:bg-gray-200 gap-2">
-    Edit Profile
-  </button>
-
-  <!-- Manage Accounts Button -->
-  <button class="flex items-center justify-center w-12 h-12 bg-gray-100 text-black rounded-full border border-gray-300 hover:bg-gray-200">
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-6 w-6">
-      <path stroke-linecap="round" stroke-linejoin="round" d="M18 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0ZM3 19.235v-.11a6.375 6.375 0 0 1 12.75 0v.109A12.318 12.318 0 0 1 9.374 21c-2.331 0-4.512-.645-6.374-1.766Z" />
+<section>
+  <!-- Back Button -->
+  <div class="flex items-center justify-between p-4">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-6 w-6 cursor-pointer" onclick="window.history.back()">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
     </svg>
-  </button>
+    <div id="user-name" class="font-bold">Loading...</div>
+    <div class="w-8"></div>
+  </div>
 
-  <!-- Dropdown Button -->
-  <button class="flex items-center justify-center w-12 h-12 bg-gray-100 text-black rounded-full border border-gray-300 hover:bg-gray-200">
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-6 w-6">
-      <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
-    </svg>
-  </button>
-</div>
+  <!-- Profile Image and Username -->
+  <div class="text-center">
+    <div class="w-24 h-24 mx-auto border-2 border-white rounded-full overflow-hidden">
+      <img src="/profile-pic.png" alt="Profile Picture" class="w-full h-full object-cover">
+    </div>
+    <div id="user-handle" class="text-gray-400 mt-2">@loading...</div>
+  </div>
 
-<div>
-  
-</div>
+  <!-- Stats Section -->
+  <div class="flex justify-center mt-4 gap-8">
+    <div class="text-center">
+      <div id="following-count" class="font-bold text-lg">0</div>
+      <div class="text-gray-400 text-sm">Following</div>
+    </div>
+    <div class="text-center">
+      <div id="followers-count" class="font-bold text-lg">0</div>
+      <div class="text-gray-400 text-sm">Followers</div>
+    </div>
+    <div class="text-center">
+      <div id="likes-count" class="font-bold text-lg">0</div>
+      <div class="text-gray-400 text-sm">Likes</div>
+    </div>
+  </div>
 
+  <!-- Buttons Section -->
+  <div class="flex justify-center gap-8 mt-4">
+    <!-- Edit Profile Button -->
+    <button class="flex items-center justify-center px-4 py-2 bg-gray-100 text-black font-bold rounded-full border border-gray-300 hover:bg-gray-200 gap-2">
+      Edit Profile
+    </button>
+    <!-- Manage Accounts Button -->
+    <button class="flex items-center justify-center w-12 h-12 bg-gray-100 text-black rounded-full border border-gray-300 hover:bg-gray-200">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-6 w-6">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M18 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0ZM3 19.235v-.11a6.375 6.375 0 0 1 12.75 0v.109A12.318 12.318 0 0 1 9.374 21c-2.331 0-4.512-.645-6.374-1.766Z" />
+      </svg>
+    </button>
+  </div>
+</section>
+
+<script>
+  // Fetch user data from the backend and populate the UI
+  async function fetchUserProfile(userId) {
+  try {
+    console.log('Fetching data for userId:', userId);
+
+    const response = await fetch(`http://localhost:4740/api/v1/user/${userId}`);
+    if (!response.ok) {
+      const errorMessage = await response.text();
+      throw new Error(`Failed to fetch user profile: ${response.status} - ${errorMessage}`);
+    }
+
+    const data = await response.json();
+    console.log('Fetched data:', data);
+
+    // Update UI...
+  } catch (error) {
+    console.error('Error fetching user data:', error);
+    document.getElementById('user-name').textContent = 'Error loading profile';
+  }
+}
+
+  // Replace 'USER_ID' with the actual user ID
+  const userId = 'USER_ID';
+  fetchUserProfile(userId);
+</script>

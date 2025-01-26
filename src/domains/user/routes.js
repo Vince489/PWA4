@@ -2,6 +2,8 @@ const express = require('express');
 const bcrypt = require('bcrypt'); // Import bcrypt
 const router = express.Router();
 const User = require('./model'); // Import your User model
+const jwt = require("jsonwebtoken");
+const SECRET_KEY = "your_secret_key"; // Replace with a strong secret key
 
 
 // Fetch all residents
@@ -53,6 +55,8 @@ router.post('/signup', async (req, res) => {
   }
 });
 
+
+
 // Login
 router.post("/login", async (req, res) => {
   const { userName, password } = req.body;
@@ -72,24 +76,39 @@ router.post("/login", async (req, res) => {
       return res.status(401).json({ message: "Invalid username or password" });
     }
 
+    // Generate a JWT token
+    const token = jwt.sign({ userId: user._id }, SECRET_KEY, { expiresIn: "1d" });
+
+    // Send the token in an HTTP-only cookie
+    res.cookie("auth_token", token, {
+      httpOnly: true, // Prevents client-side access
+      secure: process.env.NODE_ENV === "production", // Use HTTPS in production
+      sameSite: "strict", // Protect against CSRF
+      maxAge: 24 * 60 * 60 * 1000, // 1 day
+    });
+
     res.status(200).json({ message: "Login successful", userName: user.userName });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
 });
 
-
-// Updating one user by ID
-router.patch('/:id', async (req, res) => {
+// Get user profile data
+router.get('/:id', async (req, res) => {
   try {
-    const updatedUser = await User.findByIdAndUpdate(req.params.id, req.body, {
-      new: true,
-      runValidators: true,
+    const user = await User.findById(req.params.id).populate('followers following');
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    res.status(200).json({
+      userName: user.userName, 
+      likes: user.likes,
+      followersCount: user.followers.length,
+      followingCount: user.following.length,
     });
-    if (!updatedUser) return res.status(404).json({ message: 'User not found' });
-    res.json(updatedUser);
   } catch (err) {
-    res.status(400).json({ message: err.message });
+    res.status(500).json({ message: 'Error fetching user data', error: err.message });
   }
 });
 

@@ -31,5 +31,17 @@ router.get("/privacy-policy", (req, res) => {
   res.render("privacy-policy", { title: "Privacy Policy" });
 });
 
+// Terms of Service page
+
+// Sign Up page
+router.get("/signup", (req, res) => {
+  res.render("signup", { title: "Sign Up" });
+});
+
+// Log In page
+router.get("/login", (req, res) => {
+  res.render("login", { title: "Log In" });
+});
+
 
 module.exports = router;
