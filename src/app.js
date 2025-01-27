@@ -23,6 +23,9 @@ app.use(expressLayouts);
 app.set("layout", "layouts/default");
 app.set("users", "views/users");
 
+// Serve the .well-known folder
+app.use('/.well-known', express.static('.well-known'));
+
 // Serve static files
 app.use(express.static(path.join(__dirname, "public")));
 

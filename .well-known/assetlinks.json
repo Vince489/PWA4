@@ -1,0 +1,15 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls",
+      "delegate_permission/common.get_login_creds"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "cc.virtron.twa",
+      "sha256_cert_fingerprints": [
+        "3B:88:D4:CE:55:39:F7:6D:FA:47:93:B5:9D:D2:77:BE:2A:38:85:A6:94:76:E6:75:5E:73:CA:64:A1:14:F4:DA"
+      ]
+    }
+  }
+]
